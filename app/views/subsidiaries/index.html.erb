@@ -1,0 +1,3 @@
+<% @subsidiaries.each do |s| %>
+  <%= link_to s.name, subsidiary_path(s.id) %>
+<%end%>
