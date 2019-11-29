@@ -2,13 +2,14 @@ require 'rails_helper'
 
 feature 'Adm view car categories' do
   scenario 'successfully' do
+    #Arrange
     CarCategory.create(name: 'Hatches')
     CarCategory.create(name: 'Sedans')
-
+    #Act
     visit root_path
     click_on 'Categoria'
     click_on 'Hatches'
-
+    #Assert
     expect(page).to have_content('Hatches')
     expect(page).to have_link('Voltar')
   end
