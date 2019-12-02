@@ -7,7 +7,7 @@ feature 'Adm view car categories' do
     CarCategory.create(name: 'Sedans',daily_rate: 130, car_insurance: 60, third_party_insurance: 70)
     #Act
     visit root_path
-    click_on 'Categoria'
+    click_on 'Categorias'
     click_on 'Hatches'
     #Assert
     expect(page).to have_content('Hatches')
@@ -22,7 +22,7 @@ feature 'Adm view car categories' do
     CarCategory.create(name: 'Sedans',daily_rate: 130, car_insurance: 60, third_party_insurance: 70)
 
     visit root_path
-    click_on 'Categoria'
+    click_on 'Categorias'
     click_on 'Sedans'
     click_on 'Voltar'
 

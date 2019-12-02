@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_28_192550) do
+ActiveRecord::Schema.define(version: 2019_12_02_150244) do
 
   create_table "car_categories", force: :cascade do |t|
     t.string "name"
-    t.decimal "daily_rate"
-    t.decimal "car_insurance"
-    t.decimal "third_party_insurance"
+    t.float "daily_rate"
+    t.float "car_insurance"
+    t.float "third_party_insurance"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
