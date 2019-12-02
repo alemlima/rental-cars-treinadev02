@@ -1,3 +1,11 @@
+<h3>Filiais</h3>
+
+<% @subsidiaries.empty? %>
+  <p>Não existem filiais cadastradas.</p>
+
+
 <% @subsidiaries.each do |s| %>
   <%= link_to s.name, subsidiary_path(s.id) %>
 <%end%>
+
+<%= link_to 'Voltar', root_path %>
