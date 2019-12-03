@@ -16,7 +16,7 @@ class ManufacturersController < ApplicationController
       if @manufacturer.save
         redirect_to @manufacturer
       else
-        flash.now[:alert] = 'Todos os campos devem sem preenchidos'
+        #flash.now[:alert] = 'Todos os campos devem sem preenchidos'
         render :new
       end 
       #vai avisar o browser para redirecionar, gerando um novo req/resp, não redireciona automaticamente

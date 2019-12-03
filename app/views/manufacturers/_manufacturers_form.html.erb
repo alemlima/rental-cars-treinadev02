@@ -1,4 +1,13 @@
-<%= form_for @manufacturer do |f| %>
+<% if manufacturer.errors.any? %>
+<p>Por favor, verifique os erros e tente novamente:</p>
+  <ul>
+    <% manufacturer.errors.full_messages.each do |message| %>
+      <li> <%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: manufacturer, local: true do |f| %>
   <%= f.label :name, 'Nome' %>
   <%= f.text_field :name %>
   <%= f.submit 'Enviar' %>
