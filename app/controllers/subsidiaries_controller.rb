@@ -37,6 +37,14 @@ class SubsidiariesController < ApplicationController
 
   end
 
+  def destroy
+    @subsidiary = Subsidiary.find(params[:id])
+    if @subsidiary.destroy
+      flash[:notice] = 'Filial excluída com sucesso.'
+      redirect_to subsidiaries_path
+    end
+  end
+
   private
   
   def subsidiary_params

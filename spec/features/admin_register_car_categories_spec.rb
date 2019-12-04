@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Adm register car categories' do
+feature 'Admin register car categories' do
   scenario 'successfully' do
     
     visit root_path
