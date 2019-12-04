@@ -17,6 +17,20 @@ class SubsidiariesController < ApplicationController
     redirect_to @subsidiary
   end
 
+  def edit
+    @subsidiary = Subsidiary.find(params[:id])
+  end
+
+  def update
+    @subsidiary = Subsidiary.find(params[:id])
+
+    if @subsidiary.update(subsidiary_params)
+      flash[:notice] = 'Filial atualizada com sucesso.'
+      redirect_to @subsidiary
+    end
+
+  end
+
   private
   
   def subsidiary_params
