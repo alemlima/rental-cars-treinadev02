@@ -11,7 +11,7 @@ feature 'Adm register car categories' do
     fill_in 'Diária', with: 150.5
     fill_in 'Seguro do carro', with: 40.5
     fill_in 'Seguro terceirizado', with: 45.5
-    click_on 'Cadastrar categoria'
+    click_on 'Enviar'
 
     expect(page).to have_content('SUV')
     expect(page).to have_content(150.5)
@@ -29,7 +29,7 @@ feature 'Adm register car categories' do
     fill_in 'Diária', with: 100.3
     fill_in 'Seguro do carro', with: 25.3
     fill_in 'Seguro terceirizado', with: 35.3
-    click_on 'Cadastrar categoria'
+    click_on 'Enviar'
     click_on 'Voltar'
 
     expect(current_path).to eq root_path
