@@ -1,0 +1,7 @@
+<h3>Clientes:</h3><br>
+
+<%= @clients.each do |client|%>
+  <%= link_to client.name, clients_path(client)%>
+<% end %>
+
+<%= link_to 'Registrar novo cliente', new_client_path %>

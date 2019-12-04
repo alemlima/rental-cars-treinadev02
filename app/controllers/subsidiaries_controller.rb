@@ -8,13 +8,13 @@ class SubsidiariesController < ApplicationController
     @subsidiary = Subsidiary.new
   end
 
+  def show
+    @subsidiary = Subsidiary.find(params[:id])
+  end
+
   def create
     @subsidiary = Subsidiary.create(subsidiary_params)
     redirect_to @subsidiary
-  end
-
-  def show
-    @subsidiary = Subsidiary.find(params[:id])
   end
 
   private
