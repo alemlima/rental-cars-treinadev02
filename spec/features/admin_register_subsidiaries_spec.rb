@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Adm register subsidiary' do
+feature 'Admim register subsidiary' do
   scenario 'successfully' do
     
     visit root_path

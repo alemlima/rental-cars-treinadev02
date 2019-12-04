@@ -22,4 +22,42 @@ feature 'Admin edits subisidiary' do
     expect(page).to have_link('Voltar')
     
   end
+
+  scenario 'and must be unique' do
+    Subsidiary.create!(name: 'São Paulo', cnpj: '12.345.678/9000-00', address: 'Rua escorrega lá vai um, 456')
+    Subsidiary.create!(name: 'Campinas', cnpj: '12.345.678/4000-10', address: 'Rua dois, 556')
+
+    visit root_path
+    
+    click_on 'Filiais'
+    click_on 'Campinas'
+    click_on 'Editar'
+
+    fill_in 'Nome', with: 'São Paulo'
+    fill_in 'CNPJ', with: '12.345.678/9000-80'
+    fill_in 'Endereço', with: 'Rua dois, 33'
+    
+    click_on 'Enviar'
+
+    expect(page).to have_content('Já existe uma filial com esse nome.')
+  end
+
+  scenario 'and must have a valid cnpj' do
+    Subsidiary.create!(name: 'São Paulo', cnpj: '12.345.678/9000-00', address: 'Rua escorrega lá vai um, 456')
+
+    visit root_path
+    
+    click_on 'Filiais'
+    click_on 'São Paulo'
+    click_on 'Editar'
+
+    fill_in 'Nome', with: 'São Paulo'
+    fill_in 'CNPJ', with: '12.345.678/900-80'
+    fill_in 'Endereço', with: 'Rua dois, 33'
+    
+    click_on 'Enviar'
+
+    expect(page).to have_content('CNPJ inválido.')
+  end
+
 end

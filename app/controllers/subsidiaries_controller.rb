@@ -13,8 +13,12 @@ class SubsidiariesController < ApplicationController
   end
 
   def create
-    @subsidiary = Subsidiary.create(subsidiary_params)
-    redirect_to @subsidiary
+    @subsidiary = Subsidiary.new(subsidiary_params)
+   if @subsidiary.save
+     redirect_to @subsidiary
+   else
+     render :new
+   end
   end
 
   def edit
@@ -27,6 +31,8 @@ class SubsidiariesController < ApplicationController
     if @subsidiary.update(subsidiary_params)
       flash[:notice] = 'Filial atualizada com sucesso.'
       redirect_to @subsidiary
+    else
+      render :edit
     end
 
   end
