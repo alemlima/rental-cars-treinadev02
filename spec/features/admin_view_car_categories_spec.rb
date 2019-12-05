@@ -5,10 +5,12 @@ feature 'Adm view car categories' do
     #Arrange
     CarCategory.create(name: 'Hatches',daily_rate: 100, car_insurance: 50, third_party_insurance: 60)
     CarCategory.create(name: 'Sedans',daily_rate: 130, car_insurance: 60, third_party_insurance: 70)
+    
     #Act
     visit root_path
     click_on 'Categorias'
     click_on 'Hatches'
+    
     #Assert
     expect(page).to have_content('Hatches')
     expect(page).to have_content(100)
@@ -28,4 +30,14 @@ feature 'Adm view car categories' do
 
     expect(current_path).to eq root_path
   end
+
+  scenario 'if does not have any subsidiary' do
+
+    visit root_path
+    click_on 'Categorias'
+
+    expect(page).to have_content('Não existem categorias cadastradas.')
+    expect(page).to have_link('Voltar')
+  end
+
 end

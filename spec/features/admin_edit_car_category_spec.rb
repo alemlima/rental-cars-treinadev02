@@ -12,7 +12,7 @@ feature 'Admin edits car category' do
     fill_in 'Nome', with: 'Sedans'
     fill_in 'Diária', with: 105.5
     fill_in 'Seguro do carro', with: 35.5
-    fill_in 'Seguro terceirizado', with: 40.5
+    fill_in 'Seguro para terceiros', with: 40.5
     click_on 'Enviar'
 
     expect(page).to have_content('Categoria atualizada com sucesso.')
@@ -22,6 +22,24 @@ feature 'Admin edits car category' do
     expect(page).to have_content(40.5)
     expect(page).to have_link('Voltar')
 
+  end
+
+  scenario 'and return to home page' do
+    CarCategory.create!(name: 'SUV', daily_rate: 135.5, car_insurance: 45.6, third_party_insurance: 50.7)
+
+    visit root_path
+    click_on 'Categorias'
+    click_on 'SUV'
+    click_on 'Editar'
+
+    fill_in 'Nome', with: 'Sedans'
+    fill_in 'Diária', with: 105.5
+    fill_in 'Seguro do carro', with: 35.5
+    fill_in 'Seguro para terceiros', with: 40.5
+    click_on 'Enviar'
+    click_on 'Voltar'
+
+    expect(current_path).to eq root_path 
   end
   
 end

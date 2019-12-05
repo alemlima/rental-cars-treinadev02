@@ -1,7 +1,11 @@
 <h3>Fabricantes:</h3><br>
 
+<% @manufacturers.empty? %>
+<p>Não existem fabricantes cadastrados.</p>
+
 <% @manufacturers.each do |manufacturer| %>
   <%= link_to manufacturer.name, manufacturer_path(manufacturer) %>
 <% end %>
 
 <%= link_to 'Registrar novo fabricante', new_manufacturer_path %>
+<%= link_to 'Voltar', root_path %>

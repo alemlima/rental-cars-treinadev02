@@ -16,7 +16,9 @@ feature 'User register client' do
   end
 
   scenario 'and return to home page' do
+    
     visit root_path
+    
     click_on 'Clientes'
     click_on 'Registrar novo cliente'
 

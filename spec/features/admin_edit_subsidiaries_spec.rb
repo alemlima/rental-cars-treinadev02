@@ -60,4 +60,23 @@ feature 'Admin edits subisidiary' do
     expect(page).to have_content('CNPJ inválido.')
   end
 
+  scenario 'and return to home page' do
+    Subsidiary.create!(name: 'São Paulo', cnpj: '12.345.678/9000-00', address: 'Rua escorrega lá vai um, 456')
+
+    visit root_path
+    
+    click_on 'Filiais'
+    click_on 'São Paulo'
+    click_on 'Editar'
+
+    fill_in 'Nome', with: 'Campinas'
+    fill_in 'CNPJ', with: '12.345.678/9003-80'
+    fill_in 'Endereço', with: 'Rua dois, 33'
+    
+    click_on 'Enviar'
+    click_on 'Voltar'
+
+    expect(current_path).to eq root_path
+
+  end
 end

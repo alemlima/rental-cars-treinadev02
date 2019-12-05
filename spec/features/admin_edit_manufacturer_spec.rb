@@ -41,4 +41,19 @@ feature 'Admin edits manufacturer' do
 
     expect(page).to have_content('Já existe um fabricante com esse nome.')
   end
+
+  scenario 'and return to home page' do
+    Manufacturer.create!(name: 'Fiat')
+
+    visit root_path
+    click_on 'Fabricantes'
+    click_on 'Fiat'
+    click_on 'Editar'
+    fill_in 'Nome', with: 'Honda'
+    click_on 'Enviar'
+    click_on 'Voltar'
+
+    expect(current_path).to eq root_path
+
+  end
 end
