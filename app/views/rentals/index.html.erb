@@ -1,0 +1,7 @@
+<h1>Locações</h1><br>
+
+<% @rentals.empty?%>
+  <p>Não existem locações agendadas<p>
+
+<%= link_to 'Agendar locação', new_rental_path%>
+<%= link_to 'Voltar', root_path %>
