@@ -4,4 +4,5 @@
 <h3>Endereço: <%= @subsidiary.address %> </h3>
 
 <%= link_to 'Editar', edit_subsidiary_path(@subsidiary)%>
+<%= link_to 'Apagar filial', subsidiary_path(@subsidiary), method: :delete %>
 <%= link_to 'Voltar', root_path %>

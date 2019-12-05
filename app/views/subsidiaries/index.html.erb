@@ -6,7 +6,7 @@
 
 <% @subsidiaries.each do |s| %>
   <%= link_to s.name, subsidiary_path(s.id) %>
-  <%= link_to 'Apagar filial', subsidiary_path(@subsidiaries), method: :delete, data: { confirm: 'Deseja apagar esta filial?' } %>
+  
 <%end%>
 
 <%= link_to 'Cadastrar nova filial', new_subsidiary_path %>
