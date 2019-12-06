@@ -1,0 +1,7 @@
+<h1>Carros:</h1>
+
+<% @cars.empty?%>
+  <p>Não existem carros cadastrados</p>
+
+  <%= link_to 'Cadastrar novo carro', new_car_path %>
+  <%= link_to 'Voltar', root_path%>
