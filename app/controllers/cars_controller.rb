@@ -18,7 +18,7 @@ class CarsController < ApplicationController
       redirect_to @car
     else
       #erro
-      @car_model = CarModel.all
+      @car_models = CarModel.all
       @subsidiaries = Subsidiary.all
       render :new
     end

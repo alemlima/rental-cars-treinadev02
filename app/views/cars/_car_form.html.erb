@@ -1,3 +1,12 @@
+<% if car.errors.any? %>
+<p>Por favor, verifique os erros e tente novamente:</p>
+  <ul>
+    <% car.errors.full_messages.each do |message| %>
+      <li> <%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_with model: car, local: true do |f| %>
   <%= f.label :license_plate, 'Placa'%>
   <%= f.text_field :license_plate %>
@@ -6,8 +15,8 @@
   <%= f.label :mileage, 'Quilometragem' %>
   <%= f.number_field :mileage %>
   <%= f.label :car_model_id, 'Modelo' %>
-  <%= f.collection_select(:car_model_id, @car_models,:id, :name) %>
+  <%= f.collection_select(:car_model_id, @car_models,:id, :name, prompt: 'Selecione um modelo') %>
   <%= f.label :subsidiary_id, 'Filial' %>
-  <%= f.collection_select(:subsidiary_id, @subsidiaries,:id, :name) %>
+  <%= f.collection_select(:subsidiary_id, @subsidiaries,:id, :name, prompt: 'Selecione uma filial') %>
   <%= f.submit 'Enviar' %>
  <% end %> 
