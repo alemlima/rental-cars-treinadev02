@@ -1,5 +1,10 @@
 <h1>Rental Cars 2a turma</h1>
 <h3>Bem vindo ao sistema de gestão de locação</h3>
+<% if user_signed_in? %>
+  <span>Olá <%= current_user.email%></span>
+<% else %>
+  <%= link_to 'Fazer Login', new_user_session_path %>
+<% end %>
 
 <%= link_to 'Fabricantes', manufacturers_path %>
 <%= link_to 'Filiais', subsidiaries_path %>
