@@ -1,5 +1,8 @@
 class ClientsController < ApplicationController
 
+  before_action :authenticate_user!
+  before_action :find_client, only: [:show]
+
   def index
     @clients = Client.all
   end
@@ -19,13 +22,16 @@ class ClientsController < ApplicationController
   end
 
   def show
-    @client = Client.find(params[:id])
   end
 
   private
 
   def clients_params
     params.require(:client).permit(:name, :document, :email)
+  end
+
+  def find_client
+    @client = Client.find(params[:id])
   end
 
 end

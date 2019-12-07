@@ -2,6 +2,9 @@ require 'rails_helper'
 
 feature 'Admim register subsidiary' do
   scenario 'successfully' do
+
+    user = User.create!(email: 'ale@ale.com', password: '12345678')
+    login_as(user, scope: :user)
     
     visit root_path
     click_on 'Filiais'
@@ -19,6 +22,10 @@ feature 'Admim register subsidiary' do
   end
 
   scenario 'and return to home page' do
+
+    user = User.create!(email: 'ale@ale.com', password: '12345678')
+    login_as(user, scope: :user)
+
     visit root_path
     click_on 'Filiais'
     click_on 'Cadastrar nova filial'
@@ -32,4 +39,12 @@ feature 'Admim register subsidiary' do
     expect(current_path).to eq root_path
   
   end
+
+  scenario ' and must be logged in' do
+    
+    visit new_subsidiary_path
+
+    expect(current_path).to eq new_user_session_path
+  end
+
 end

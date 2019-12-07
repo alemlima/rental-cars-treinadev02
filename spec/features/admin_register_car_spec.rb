@@ -2,6 +2,10 @@ require 'rails_helper'
 
 feature 'Admin register car' do
   scenario 'successfully' do
+
+    user = User.create!(email: 'ale@ale.com', password: '12345678')
+    login_as(user, scope: :user)
+    
     Manufacturer.create!(name: 'Fiat')
     CarCategory.create!(name: 'A', daily_rate: 135.5, car_insurance: 45.6, third_party_insurance: 50.7)
     CarModel.create!(name: 'Onix', year: '2020', manufacturer_id:1, car_category_id:1, fuel_type:'Flex', motorization:'1.0')
@@ -24,6 +28,9 @@ feature 'Admin register car' do
   end
 
   scenario 'and return to home page' do
+
+    user = User.create!(email: 'ale@ale.com', password: '12345678')
+    login_as(user, scope: :user)
     
     Manufacturer.create!(name: 'Fiat')
     CarCategory.create!(name: 'A', daily_rate: 135.5, car_insurance: 45.6, third_party_insurance: 50.7)
@@ -46,7 +53,10 @@ feature 'Admin register car' do
   end
 
   scenario 'and must fill in all fields' do
-  
+
+    user = User.create!(email: 'ale@ale.com', password: '12345678')
+    login_as(user, scope: :user)
+      
     Manufacturer.create!(name: 'Fiat')
     CarCategory.create!(name: 'A', daily_rate: 135.5, car_insurance: 45.6, third_party_insurance: 50.7)
     CarModel.create!(name: 'Onix', year: '2020', manufacturer_id:1, car_category_id:1, fuel_type:'Flex', motorization:'1.0')
@@ -68,6 +78,10 @@ feature 'Admin register car' do
   end
 
   scenario 'and license plate must be unique' do
+
+    user = User.create!(email: 'ale@ale.com', password: '12345678')
+    login_as(user, scope: :user)
+
     Manufacturer.create!(name: 'Fiat')
     CarCategory.create!(name: 'A', daily_rate: 135.5, car_insurance: 45.6, third_party_insurance: 50.7)
     CarModel.create!(name: 'Onix', year: '2020', manufacturer_id:1, car_category_id:1, fuel_type:'Flex', motorization:'1.0')
@@ -89,6 +103,10 @@ feature 'Admin register car' do
   end
 
   scenario 'and mileage must be a number greater than 0' do
+
+    user = User.create!(email: 'ale@ale.com', password: '12345678')
+    login_as(user, scope: :user)
+
     Manufacturer.create!(name: 'Fiat')
     CarCategory.create!(name: 'A', daily_rate: 135.5, car_insurance: 45.6, third_party_insurance: 50.7)
     CarModel.create!(name: 'Onix', year: '2020', manufacturer_id:1, car_category_id:1, fuel_type:'Flex', motorization:'1.0')
@@ -106,5 +124,12 @@ feature 'Admin register car' do
     click_on 'Enviar'
     
     expect(page).to have_content('Quilometragem deve ser um número maior ou igual a zero.')
+  end
+
+  scenario ' and must be logged in' do
+    
+    visit new_car_path
+
+    expect(current_path).to eq new_user_session_path
   end
 end

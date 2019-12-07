@@ -2,6 +2,10 @@ require 'rails_helper'
 
 feature 'Admin register car model'do
   scenario 'successfully'do
+  
+    user = User.create!(email: 'ale@ale.com', password: '12345678')
+    login_as(user, scope: :user)
+
     Manufacturer.create!(name: 'Chevrolet')
     Manufacturer.create!(name: 'Honda')
     CarCategory.create!(name: 'A', daily_rate: 100, car_insurance:50, third_party_insurance: 90)
@@ -30,6 +34,10 @@ feature 'Admin register car model'do
   end
 
   scenario 'and return to home page' do
+    
+    user = User.create!(email: 'ale@ale.com', password: '12345678')
+    login_as(user, scope: :user)
+
     Manufacturer.create!(name: 'Chevrolet')
     CarCategory.create!(name: 'B', daily_rate: 90, car_insurance:40, third_party_insurance: 80)
   
@@ -48,5 +56,12 @@ feature 'Admin register car model'do
     click_on 'Voltar'
 
     expect(current_path).to eq root_path
+  end
+
+  scenario ' and must be logged in' do
+    
+    visit new_car_model_path
+
+    expect(current_path).to eq new_user_session_path
   end
 end

@@ -2,6 +2,10 @@ require 'rails_helper'
 
 feature 'User book a car rent' do
   scenario 'successfully' do
+
+    user = User.create!(email: 'ale@ale.com', password: '12345678')
+    login_as(user, scope: :user)
+    
     Client.create!(name: 'Alex Santos', document:'234.876.456-99', email: 'alex@alex.com')
     CarCategory.create!(name: 'A', daily_rate: 135.5, car_insurance: 45.6, third_party_insurance: 50.7)
 
@@ -21,6 +25,10 @@ feature 'User book a car rent' do
   end
 
   scenario 'and return to home page' do
+
+    user = User.create!(email: 'ale@ale.com', password: '12345678')
+    login_as(user, scope: :user)
+
     Client.create!(name: 'Alex Santos', document:'234.876.456-99', email: 'alex@alex.com')
     CarCategory.create!(name: 'A', daily_rate: 135.5, car_insurance: 45.6, third_party_insurance: 50.7)
     
@@ -39,4 +47,10 @@ feature 'User book a car rent' do
 
   end
 
+  scenario ' and must be logged in' do
+    
+    visit new_rental_path
+
+    expect(current_path).to eq new_user_session_path
+  end
 end

@@ -1,7 +1,10 @@
 class CarModelsController < ApplicationController
+
+  before_action :authenticate_user!
+  before_action :find_car_model, only: [:show]
   
   def index
-  
+    @car_model = CarModel.all
   end
 
   def new
@@ -25,7 +28,6 @@ class CarModelsController < ApplicationController
   end
   
   def show
-    @car_model = CarModel.find(params[:id])
   end
 
   private
@@ -34,4 +36,7 @@ class CarModelsController < ApplicationController
     params.require(:car_model).permit(:name, :year, :motorization, :fuel_type, :car_category_id, :manufacturer_id)
   end
 
+  def find_car_model
+    @car_model = CarModel.find(params[:id])
+  end
 end

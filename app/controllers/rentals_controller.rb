@@ -1,5 +1,8 @@
 class RentalsController < ApplicationController
 
+  before_action :authenticate_user!
+  before_action :find_rental, only: [:show]
+
   def index
     @rentals = Rental.all
   end
@@ -28,14 +31,15 @@ class RentalsController < ApplicationController
   end
 
   def show
-  
-    @rental = Rental.find(params[:id])
-
   end
 
   private
 
   def rental_params
     params.require(:rental).permit(:start_date, :end_date, :client_id, :car_category_id)
+  end
+
+  def find_rental
+    @rental = Rental.find(params[:id])
   end
 end
