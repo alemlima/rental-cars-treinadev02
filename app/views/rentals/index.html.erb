@@ -3,5 +3,11 @@
 <% @rentals.empty?%>
   <p>Não existem locações agendadas<p>
 
+<%= form_with url: search_rentals_path, local: true, method: :get do %>  
+  <% label_tag :q, 'Código'%>
+  <%= text_field_tag :q %>
+  <%= submit_tag 'Buscar'%>
+<% end %>
+
 <%= link_to 'Agendar locação', new_rental_path%>
 <%= link_to 'Voltar', root_path %>

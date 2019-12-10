@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'Visitor view manufacturers' do
-  scenario 'successfully' do
+  xscenario 'successfully' do
     Manufacturer.create(name: 'Fiat')
     Manufacturer.create(name: 'Volkswagen')
 
@@ -13,7 +13,7 @@ feature 'Visitor view manufacturers' do
     expect(page).to have_link('Voltar')
   end
 
-  scenario 'and return to home page' do
+  xscenario 'and return to home page' do
     Manufacturer.create(name: 'Fiat')
     Manufacturer.create(name: 'Volkswagen')
 
@@ -25,7 +25,7 @@ feature 'Visitor view manufacturers' do
     expect(current_path).to eq root_path
   end
 
-  scenario 'but does not have any manufacturers' do
+  xscenario 'but does not have any manufacturers' do
     
     visit root_path
     click_on 'Fabricantes'

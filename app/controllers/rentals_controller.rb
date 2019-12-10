@@ -19,8 +19,8 @@ class RentalsController < ApplicationController
     @rental = Rental.new(rental_params)
 
     if @rental.save
-      flash[:alert] = 'Locação efetuada com sucesso.'
-      redirect_to @rental
+      
+      redirect_to @rental, notice: 'Locação efetuada com sucesso.'
     else
       #erro
       @clients = Client.all
