@@ -5,5 +5,14 @@ class Car < ApplicationRecord
   validates :license_plate, uniqueness: { message: 'Placa já cadastrada no sistema.'}
   validates :mileage, numericality: { greater_than_or_equal_to: 0, message: 'Quilometragem deve ser um número maior ou igual a zero.' }
 
-  enum disponibility: [:available, :rented, :maintenance]
+  has_one :car_category, through: :car_model
+  
+  has_many :car_rentals
+  has_many :rentals, through: :car_rentals
+
+  enum disponibility: {available: 0, rented: 5, maintenance: 9}
+
+  #def description
+  #  "#{car_model_id.name} - #{license_plate}"
+  #end
 end

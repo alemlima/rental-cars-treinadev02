@@ -15,16 +15,20 @@ require 'rails_helper'
 
       Manufacturer.create!(name: 'Fiat')
 
-      car = CarModel.create!(name: 'Onix', 
+      car_model = CarModel.create!(name: 'Onix', 
                             year: '2020', 
                             manufacturer_id:1, 
                             car_category_id:1, 
                             fuel_type:'Flex', 
                             motorization:'1.0')
 
+      
       subsidiary = Subsidiary.create!(name: 'São Paulo', cnpj: '12.989.776/0000-67', address: 'Rua dois, 33')
 
-      Rental.create!(start_date: Date.tomorrow, 
+      car = Car.create!(car_model: car_model, license_plate: 'ABC1234',
+                        color: 'Verde', mileage: 0, subsidiary: subsidiary)
+      
+      rental = Rental.create!(start_date: Date.tomorrow, 
                           end_date: 2.days.from_now, 
                           client: client, 
                           car_category: category, 
@@ -33,11 +37,16 @@ require 'rails_helper'
       visit root_path
       click_on 'Locações'
       click_on 'AAA123'
+      select car.license_plate, from: 'Carro'
       click_on 'Iniciar locação'
 
       expect(page).to have_content('Locação efetivada com sucesso.')
-      expect(page).not_to have_content('Inicar locação')
-      expect(page).to have_content('Status: in_progress')
+      expect(page).not_to have_link('Inicar locação')
+      rental.reload
+      car.reload
+      expect(rental).to be_in_progress
+      expect(car).to be_rented
+      
     end
   end
 

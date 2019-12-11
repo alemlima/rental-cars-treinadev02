@@ -3,6 +3,9 @@ class Rental < ApplicationRecord
   belongs_to :car_category
   validates :end_date, :start_date, presence: :true
   validate :end_date_must_be_greater_than_start_date
+  
+  has_one :car_rental
+  has_one :car, through: :car_rental
 
   enum status: [:scheduled, :in_progress, :canceled]
 

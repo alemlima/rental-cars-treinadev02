@@ -30,10 +30,15 @@ class RentalsController < ApplicationController
   end
 
   def show
+    @cars = @rental.car_category.cars
   end
 
   def start
+    @cars = @rental.car_category.cars
     @rental.in_progress!
+    Car.find(params[:rental][:car_id]).rented!
+    @rental.create_car_rental(car: @car)
+    #@car.rented!
     redirect_to @rental, notice: 'Locação efetivada com sucesso.'
   end
 

@@ -16,7 +16,15 @@
 </dl>
 
 <% if @rental.scheduled? %>
-  <%= link_to 'Iniciar locação', start_rental_path(@rental), method: :patch %>
+  <%= form_with model: @rental, url: start_rental_path, method: :post do |f| %>
+    <%= f.label :car_id, 'Carro'%>
+    <%= f.collection_select :car_id, @cars, :id, :license_plate %>
+    <%= f.submit 'Iniciar locação'%>
+  <% end %> 
 <% end %>
+
+<%# if @rental.scheduled? %>
+  <%#= link_to 'Iniciar locação', start_rental_path(@rental), method: :patch %>
+<%# end %>
 
 <%= link_to 'Voltar', root_path %>
