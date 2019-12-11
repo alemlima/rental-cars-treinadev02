@@ -9,5 +9,9 @@
   <%= submit_tag 'Buscar'%>
 <% end %>
 
+<% @rentals.each do |rental| %>
+  <%= link_to rental.reservation_code, rental_path(rental) %>
+<% end %>
+
 <%= link_to 'Agendar locação', new_rental_path%>
 <%= link_to 'Voltar', root_path %>

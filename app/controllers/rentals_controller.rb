@@ -1,7 +1,7 @@
 class RentalsController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :find_rental, only: [:show]
+  before_action :find_rental, only: [:show, :start]
 
   def index
     @rentals = Rental.all
@@ -19,7 +19,6 @@ class RentalsController < ApplicationController
     @rental = Rental.new(rental_params)
 
     if @rental.save
-      
       redirect_to @rental, notice: 'Locação efetuada com sucesso.'
     else
       #erro
@@ -33,10 +32,15 @@ class RentalsController < ApplicationController
   def show
   end
 
+  def start
+    @rental.in_progress!
+    redirect_to @rental, notice: 'Locação efetivada com sucesso.'
+  end
+
   private
 
   def rental_params
-    params.require(:rental).permit(:start_date, :end_date, :client_id, :car_category_id)
+    params.require(:rental).permit(:start_date, :end_date, :client_id, :car_category_id, :reservation_code)
   end
 
   def find_rental

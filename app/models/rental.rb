@@ -4,6 +4,9 @@ class Rental < ApplicationRecord
   validates :end_date, :start_date, presence: :true
   validate :end_date_must_be_greater_than_start_date
 
+  enum status: [:scheduled, :in_progress, :canceled]
+
+  
   def end_date_must_be_greater_than_start_date
     return unless start_date.present? || end_date.present?
 
@@ -11,7 +14,7 @@ class Rental < ApplicationRecord
       errors.add(:end_date, 'deve ser maior que data de início')
     end
 
-    if start_date.eql?(Date.today)
+    if start_date.eql?(Date.current)
       errors.add(:start_date, 'deve ser maior que hoje')
     end
 

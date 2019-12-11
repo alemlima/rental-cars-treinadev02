@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   resources :clients,         only: [:index, :show, :new, :create]
   resources :car_models,      only: [:index, :show, :new, :create]
   resources :cars,            only: [:index, :show, :new, :create]
-  resources :rentals,         only: [:index, :show, :new, :create]  do
+  resources :rentals,         only: [:index, :show, :new, :create, :edit, :update]  do
     get 'search', on: :collection
+    patch 'start', on: :member
   end
 end
