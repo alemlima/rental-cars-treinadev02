@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Adm view car categories' do
   scenario 'successfully' do
 
-    user = User.create!(email: 'ale@ale.com', password: '12345678')
+    user = User.create!(email: 'ale@ale.com', password: '12345678', role: :admin)
     login_as(user, scope: :user)
     
     #Arrange
@@ -25,7 +25,7 @@ feature 'Adm view car categories' do
 
   scenario 'and return to home page' do
 
-    user = User.create!(email: 'ale@ale.com', password: '12345678')
+    user = User.create!(email: 'ale@ale.com', password: '12345678', role: :admin)
     login_as(user, scope: :user)
 
     CarCategory.create(name: 'Hatches',daily_rate: 100, car_insurance: 50, third_party_insurance: 60)
@@ -41,7 +41,7 @@ feature 'Adm view car categories' do
 
   scenario 'if does not have any subsidiary' do
 
-    user = User.create!(email: 'ale@ale.com', password: '12345678')
+    user = User.create!(email: 'ale@ale.com', password: '12345678', role: :admin)
     login_as(user, scope: :user)
 
     visit root_path

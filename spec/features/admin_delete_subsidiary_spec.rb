@@ -5,7 +5,7 @@ feature 'Admin delete subsidiary' do
     Subsidiary.create!(name: 'São Paulo', cnpj: '12.345.678/9000-00', address: 'Rua escorrega lá vai um, 456')
     Subsidiary.create!(name: 'Campinas', cnpj: '12.345.678/3400-00', address: 'Rua dois, 56')
     
-    user = User.create!(email: 'ale@ale.com', password: '12345678')
+    user = User.create!(email: 'ale@ale.com', password: '12345678', role: :admin)
     login_as(user, scope: :user)
 
     visit root_path

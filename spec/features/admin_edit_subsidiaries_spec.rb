@@ -4,7 +4,7 @@ feature 'Admin edits subisidiary' do
   scenario 'successfully' do
     Subsidiary.create!(name: 'São Paulo', cnpj: '12.345.678/9000-00', address: 'Rua escorrega lá vai um, 456')
 
-    user = User.create!(email: 'ale@ale.com', password: '12345678')
+    user = User.create!(email: 'ale@ale.com', password: '12345678', role: :admin)
     login_as(user, scope: :user)
 
     visit root_path
@@ -30,7 +30,7 @@ feature 'Admin edits subisidiary' do
     Subsidiary.create!(name: 'São Paulo', cnpj: '12.345.678/9000-00', address: 'Rua escorrega lá vai um, 456')
     Subsidiary.create!(name: 'Campinas', cnpj: '12.345.678/4000-10', address: 'Rua dois, 556')
 
-    user = User.create!(email: 'ale@ale.com', password: '12345678')
+    user = User.create!(email: 'ale@ale.com', password: '12345678', role: :admin)
     login_as(user, scope: :user)
 
 
@@ -52,7 +52,7 @@ feature 'Admin edits subisidiary' do
   scenario 'and must have a valid cnpj' do
     Subsidiary.create!(name: 'São Paulo', cnpj: '12.345.678/9000-00', address: 'Rua escorrega lá vai um, 456')
 
-    user = User.create!(email: 'ale@ale.com', password: '12345678')
+    user = User.create!(email: 'ale@ale.com', password: '12345678', role: :admin)
     login_as(user, scope: :user)
 
 
@@ -74,7 +74,7 @@ feature 'Admin edits subisidiary' do
   scenario 'and return to home page' do
     Subsidiary.create!(name: 'São Paulo', cnpj: '12.345.678/9000-00', address: 'Rua escorrega lá vai um, 456')
 
-    user = User.create!(email: 'ale@ale.com', password: '12345678')
+    user = User.create!(email: 'ale@ale.com', password: '12345678', role: :admin)
     login_as(user, scope: :user)
 
     visit root_path

@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Admin register car' do
   scenario 'successfully' do
 
-    user = User.create!(email: 'ale@ale.com', password: '12345678')
+    user = User.create!(email: 'ale@ale.com', password: '12345678', role: :admin)
     login_as(user, scope: :user)
     
     Manufacturer.create!(name: 'Fiat')
@@ -29,7 +29,7 @@ feature 'Admin register car' do
 
   scenario 'and return to home page' do
 
-    user = User.create!(email: 'ale@ale.com', password: '12345678')
+    user = User.create!(email: 'ale@ale.com', password: '12345678', role: :admin)
     login_as(user, scope: :user)
     
     Manufacturer.create!(name: 'Fiat')
@@ -54,7 +54,7 @@ feature 'Admin register car' do
 
   scenario 'and must fill in all fields' do
 
-    user = User.create!(email: 'ale@ale.com', password: '12345678')
+    user = User.create!(email: 'ale@ale.com', password: '12345678', role: :admin)
     login_as(user, scope: :user)
       
     Manufacturer.create!(name: 'Fiat')
@@ -79,7 +79,7 @@ feature 'Admin register car' do
 
   scenario 'and license plate must be unique' do
 
-    user = User.create!(email: 'ale@ale.com', password: '12345678')
+    user = User.create!(email: 'ale@ale.com', password: '12345678', role: :admin)
     login_as(user, scope: :user)
 
     Manufacturer.create!(name: 'Fiat')
@@ -104,7 +104,7 @@ feature 'Admin register car' do
 
   scenario 'and mileage must be a number greater than 0' do
 
-    user = User.create!(email: 'ale@ale.com', password: '12345678')
+    user = User.create!(email: 'ale@ale.com', password: '12345678', role: :admin)
     login_as(user, scope: :user)
 
     Manufacturer.create!(name: 'Fiat')

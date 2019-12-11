@@ -13,8 +13,8 @@ feature 'User book a car rent' do
     click_on 'Locações'
     click_on 'Agendar locação'
 
-    fill_in 'Data de início', with: '05/12/2019'  
-    fill_in 'Data de término', with: '09/12/2019'
+    fill_in 'Data de início', with: Date.tomorrow
+    fill_in 'Data de término', with: 2.days.from_now
     select  'Alex Santos - 395.069.980-51', from: 'Cliente'
     select  'A', from: 'Categoria'
     click_on 'Enviar'
@@ -36,8 +36,8 @@ feature 'User book a car rent' do
     click_on 'Locações'
     click_on 'Agendar locação'
 
-    fill_in 'Data de início', with: '05/12/2019'  
-    fill_in 'Data de término', with: '09/12/2019'
+    fill_in 'Data de início', with: Date.tomorrow  
+    fill_in 'Data de término', with: 2.days.from_now
     select  'Alex Santos - 395.069.980-51', from: 'Cliente'
     select  'A', from: 'Categoria'
     click_on 'Enviar'
@@ -45,14 +45,6 @@ feature 'User book a car rent' do
 
     expect(current_path).to eq root_path
 
-  end
-
-  xscenario 'and must fill in all fields' do
-  
-  end
-
-  xscenario 'and start date must be lesser to end date' do
-  
   end
 
   scenario ' and must be logged in' do

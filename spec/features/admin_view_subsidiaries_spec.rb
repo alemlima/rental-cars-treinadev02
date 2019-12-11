@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Adm view subsidiarys' do
   scenario 'successfully' do
 
-    user = User.create!(email: 'ale@ale.com', password: '12345678')
+    user = User.create!(email: 'ale@ale.com', password: '12345678', role: :admin)
     login_as(user, scope: :user)
 
     Subsidiary.create!(name: 'São Paulo', cnpj: '12.345.678/9000-00', address: 'Rua escorrega lá vai um, 456')
@@ -22,7 +22,7 @@ feature 'Adm view subsidiarys' do
 
   scenario 'and return to home page' do
     
-    user = User.create!(email: 'ale@ale.com', password: '12345678')
+    user = User.create!(email: 'ale@ale.com', password: '12345678', role: :admin)
     login_as(user, scope: :user)
     
     Subsidiary.create!(name: 'São Paulo', cnpj: '12.345.678/9000-00', address: 'Rua escorrega lá vai um, 456')
@@ -39,7 +39,7 @@ feature 'Adm view subsidiarys' do
 
   scenario 'if does not have any subsidiary' do
 
-    user = User.create!(email: 'ale@ale.com', password: '12345678')
+    user = User.create!(email: 'ale@ale.com', password: '12345678', role: :admin)
     login_as(user, scope: :user)
 
     visit root_path

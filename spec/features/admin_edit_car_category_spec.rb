@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Admin edits car category' do
   scenario 'successfully' do
     
-    user = User.create!(email: 'ale@ale.com', password: '12345678')
+    user = User.create!(email: 'ale@ale.com', password: '12345678', role: :admin)
     login_as(user, scope: :user)
 
     CarCategory.create!(name: 'SUV', daily_rate: 135.5, car_insurance: 45.6, third_party_insurance: 50.7)
@@ -31,7 +31,7 @@ feature 'Admin edits car category' do
   scenario 'and return to home page' do
     CarCategory.create!(name: 'SUV', daily_rate: 135.5, car_insurance: 45.6, third_party_insurance: 50.7)
 
-    user = User.create!(email: 'ale@ale.com', password: '12345678')
+    user = User.create!(email: 'ale@ale.com', password: '12345678', role: :admin)
     login_as(user, scope: :user)
 
     visit root_path

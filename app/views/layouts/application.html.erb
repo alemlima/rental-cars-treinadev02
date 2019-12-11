@@ -16,9 +16,12 @@
     <% else %>
       <%= link_to 'Fazer Login', new_user_session_path %>
     <% end %>
+  
+  <%= render partial: '/shared/menu' %>
 
   <h3><%= notice %></h3>
   <h3><%= alert %></h3>
+
     <%= yield %>
   </body>
 </html>

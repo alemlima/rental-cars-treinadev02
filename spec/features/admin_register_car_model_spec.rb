@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Admin register car model'do
   scenario 'successfully'do
   
-    user = User.create!(email: 'ale@ale.com', password: '12345678')
+    user = User.create!(email: 'ale@ale.com', password: '12345678', role: :admin)
     login_as(user, scope: :user)
 
     Manufacturer.create!(name: 'Chevrolet')
@@ -35,7 +35,7 @@ feature 'Admin register car model'do
 
   scenario 'and return to home page' do
     
-    user = User.create!(email: 'ale@ale.com', password: '12345678')
+    user = User.create!(email: 'ale@ale.com', password: '12345678', role: :admin)
     login_as(user, scope: :user)
 
     Manufacturer.create!(name: 'Chevrolet')

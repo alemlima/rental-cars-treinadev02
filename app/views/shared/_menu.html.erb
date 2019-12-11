@@ -1,0 +1,12 @@
+<nav>
+  <% if user_signed_in? && current_user.admin? %>
+    <%= link_to 'Fabricantes', manufacturers_path %>
+    <%= link_to 'Filiais', subsidiaries_path %>
+    <%= link_to 'Categorias', car_categories_path %>
+    <%= link_to 'Modelos de Carro', car_models_path %>
+    <%= link_to 'Carros', cars_path %>
+  <% end %>
+
+  <%= link_to 'Locações', rentals_path %>
+  <%= link_to 'Clientes', clients_path %>
+</nav>
