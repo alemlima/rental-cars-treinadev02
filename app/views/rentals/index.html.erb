@@ -4,7 +4,7 @@
   <p>Não existem locações agendadas<p>
 
 <%= form_with url: search_rentals_path, local: true, method: :get do %>  
-  <% label_tag :q, 'Código'%>
+  <%= label_tag :q, 'Código'%>
   <%= text_field_tag :q %>
   <%= submit_tag 'Buscar'%>
 <% end %>
@@ -12,6 +12,10 @@
 <% @rentals.each do |rental| %>
   <%= link_to rental.reservation_code, rental_path(rental) %>
 <% end %>
+
+<%= render partial: 'rental', collection: @rentals %>
+<%#= render @rentals %>
+
 
 <%= link_to 'Agendar locação', new_rental_path%>
 <%= link_to 'Voltar', root_path %>

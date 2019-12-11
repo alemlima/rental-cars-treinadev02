@@ -37,6 +37,12 @@ class RentalsController < ApplicationController
     redirect_to @rental, notice: 'Locação efetivada com sucesso.'
   end
 
+  def search
+    
+    @rentals = Rental.where('reservation_code like ?', "%#{params[:q]}%")
+    render :index
+  end
+
   private
 
   def rental_params
