@@ -37,7 +37,7 @@ require 'rails_helper'
       visit root_path
       click_on 'Locações'
       click_on 'AAA123'
-      select car.license_plate, from: 'Carro'
+      select "#{car_model.name} - #{car.license_plate}", from: 'Carro'
       click_on 'Iniciar locação'
 
       expect(page).to have_content('Locação efetivada com sucesso.')

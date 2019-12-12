@@ -5,6 +5,8 @@
 
 <h3>Detalhes da locação:</h3>
 <dl>
+  <dt>Código da reserva:</dt>
+  <dd><%= rental.reservation_code %></dd>
   <dt>Data de início:</dt>
   <dd><%= rental.start_date.strftime('%d/%m/%Y') %></dd>
   <dt>Data de término:</dt>
@@ -13,6 +15,4 @@
   <dd><%= rental.car_category.name %></dd>
   <dt>Status:</dt>
   <dd><%= rental.status %></dd>
-  <dt>Código da reserva:</dt>
-  <dd><%= rental.reservation_code %></dd>
 </dl>
