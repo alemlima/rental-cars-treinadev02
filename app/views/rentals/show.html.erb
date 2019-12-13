@@ -1,25 +1,6 @@
-<h1>Locação</h1>
+<h1>Locação:</h1>
 
-<h3>Cliente:</h3>
-<h3><%= @rental.client.full_description %></h3>
-
-<h3>Detalhes da locação:</h3>
-<dl>
-  <dt>Data de início:</dt>
-  <dd><%= @rental.start_date.strftime('%d/%m/%Y') %></dd>
-  <dt>Data de término:</dt>
-  <dd><%= @rental.end_date.strftime('%d/%m/%Y') %></dd>
-  <dt>Categoria:</dt>
-  <dd><%= @rental.car_category.name %></dd>
-  <dt>Status:</dt>
-  <dd><%= @rental.status %></dd>
-  <% if @rental.in_progress?%>
-    <dt>Carro:</dt>
-    <dd><%= @rental.car.description %></dd>
-    <dt>Valor total:</dt>
-    <dd><%= @rental.car_rental.price %></dd>
-  <% end %>
-</dl>
+<%= render @rental %>
 
 <% if @rental.scheduled? %>
   <%= form_with model: @rental, url: start_rental_path, method: :post do |f| %>
