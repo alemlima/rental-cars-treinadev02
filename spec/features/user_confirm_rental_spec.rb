@@ -13,12 +13,12 @@ require 'rails_helper'
                                     car_insurance: 45.6, 
                                     third_party_insurance: 50.7)
 
-      Manufacturer.create!(name: 'Fiat')
+      manufacturer = Manufacturer.create!(name: 'Chevrolet')
 
       car_model = CarModel.create!(name: 'Onix', 
                             year: '2020', 
-                            manufacturer_id:1, 
-                            car_category_id:1, 
+                            manufacturer: manufacturer, 
+                            car_category: category, 
                             fuel_type:'Flex', 
                             motorization:'1.0')
 
@@ -42,6 +42,8 @@ require 'rails_helper'
 
       expect(page).to have_content('Locação efetivada com sucesso.')
       expect(page).not_to have_link('Inicar locação')
+      expect(page).to have_content("#{car_model.name} - #{car.license_plate}")
+      expect(page).to have_content(category.price)
       rental.reload
       car.reload
       expect(rental).to be_in_progress

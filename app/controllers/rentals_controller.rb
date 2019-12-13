@@ -48,7 +48,7 @@ class RentalsController < ApplicationController
   def search
     
     @rentals = Rental.where('reservation_code like ?', "%#{params[:q]}%")
-    render :index
+    render :search_results
   end
 
   private

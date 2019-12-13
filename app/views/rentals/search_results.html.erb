@@ -1,0 +1,11 @@
+<% if @rentals.empty?%>
+  <p>Nenhuma locação encontrada, por favor tente novamente.</p><br>
+<% elsif @rentals.size == 1 %>
+  <p>1 locação encontrada:</p><br>
+<% else %>
+  <p><%= "#{@rentals.size} locações encontradas:"%></p><br>  
+<% end %>
+
+<%= render @rentals  %>
+
+<%= link_to 'Voltar', rentals_path %>

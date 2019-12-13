@@ -13,6 +13,12 @@
   <dd><%= @rental.car_category.name %></dd>
   <dt>Status:</dt>
   <dd><%= @rental.status %></dd>
+  <% if @rental.in_progress?%>
+    <dt>Carro:</dt>
+    <dd><%= @rental.car.description %></dd>
+    <dt>Valor total:</dt>
+    <dd><%= @rental.car_rental.price %></dd>
+  <% end %>
 </dl>
 
 <% if @rental.scheduled? %>
@@ -22,9 +28,5 @@
     <%= f.submit 'Iniciar locação'%>
   <% end %> 
 <% end %>
-
-<%# if @rental.scheduled? %>
-  <%#= link_to 'Iniciar locação', start_rental_path(@rental), method: :patch %>
-<%# end %>
 
 <%= link_to 'Voltar', root_path %>
